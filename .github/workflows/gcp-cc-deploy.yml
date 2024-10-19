@@ -47,4 +47,4 @@ jobs:
       #https://cloudcustodian.io/docs/gcp/policy/genericgcpactions.html#notify
       - name: Run cc-deployer.sh
         run: |
-          python cc_deployer.py buildspec.json
+          python cc-deployer.py buildspec.json
