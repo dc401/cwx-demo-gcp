@@ -1,0 +1,27 @@
+policies:
+  - name: find-buckets-without-custodian-label
+    resource: gcp.bucket
+    filters:
+      - type: value
+        key: "labels.custodian"
+        value: absent
+    actions:
+      - type: post-finding
+        category: TEST_DETECTION_INTEGRATION
+        severity:
+          enum:
+            - LOW
+        source:
+          description: "GitHub Actions CI/CD"
+
+#Run: gcloud auth login
+#*Only if needed run: gcloud config set project PROJECT_ID
+#Run: python -m venv .
+#Run: ./Scripts/activate.ps1
+#Run: pip install c7n c7n-gcp
+#Run: custodian run -d -s . ./find-untagged-buckets.yml -v
+
+#If you're getting errors in Windows
+#sometimes windows requires manual setting set GOOGLE_CLOUD_PROJECT=<PROJECT_ID> even post auth
+#Run: gcloud config list (obtain project id)
+#example powershell : $env:GOOGLE_CLOUD_PROJECT='xtec-demos-439004'

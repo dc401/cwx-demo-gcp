@@ -1,0 +1,5 @@
+{
+    "detection": [
+      "./detections/find-untagged-buckets.yml"
+    ]
+  }
