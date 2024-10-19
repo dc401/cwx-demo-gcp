@@ -42,7 +42,9 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip'
-
-      - name: Test
+      #cc-deployer runs cloud custodian unit tests as dry runs and integration tests with runs that then push a pub/sub message
+      #validation of the pub/sub message is based on policy name matching the message requries decoding JSON serialized zlib compression and then base64
+      #https://cloudcustodian.io/docs/gcp/policy/genericgcpactions.html#notify
+      - name: Run cc-deployer.sh
         run: |
-          gcloud info
+          python cc_deployer.py buildspec.json
